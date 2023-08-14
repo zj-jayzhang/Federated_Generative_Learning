@@ -4,7 +4,7 @@ Existing federated learning solutions focus on transmitting training data or mod
 
 # Datasets
 
-In order to adequately simulate scenarios of label distribution skew and feature distribution skew, extensive experiments were conducted on subsets of `ImageNet` and `DomainNet` datasets. The specific construction methods and descriptions of the subsets are presented as follows (for more details, please refer to `helpers/data.py`).
+In order to adequately simulate scenarios of label distribution skew and feature distribution skew, extensive experiments were conducted on subsets of `ImageNet` and `DomainNet` datasets. The specific construction methods and descriptions of the subsets are presented as follows (for more details, please refer to `helpers/dataset.py`).
 
 | Dataset | Description| #Class | Class name | Class id |
 | --- | --- | --- | --- | --- |
@@ -16,17 +16,17 @@ In order to adequately simulate scenarios of label distribution skew and feature
 
 
 
-## Requirements
+# Requirements
 - You can set up the environment using the command below.
 ```
 conda env create -f environment.yaml
-conda activate xx
+conda activate fgl
 ```
 
-## Reproducing
+# Reproducing
 
-### For Our Method
-#### Data Generation at Server
+## For Our Method
+### Data Generation at Server
 We investigate two types of prompt generation strategies: `class-level prompt` and `instance-level prompt`. The class-level prompts are generated based on the class names, providing high-level guidance to the generative model.  The instance-level prompt strategy leverages prompts that are tailored for individual instances in the private dataset, which are more informative for training models.
 ![img](imgs/prompt.png)
 For class-level prompt, run the following command:
@@ -39,7 +39,7 @@ For instance-level prompt, run the following command:
 sh scripts/data_generation/instance_level.sh  $raw_data_dir $syn_data_dir $save_prompt_dir $gpu_id
 ```
 
-#### One-Shot FL
+### One-Shot FL
 Run the following command:
 ```bash
 sh ./scripts/one-shot/fgl.sh  $net $dataset $exp_name $syn $blip $data_path_train $data_path_test $gpu_id
@@ -50,7 +50,7 @@ sh ./scripts/one-shot/fgl.sh  $net $dataset $exp_name $syn $blip $data_path_trai
 # blip:choices [0, 1]
 ```
 
-#### 5-round FL
+### 5-round FL
 - with finetuning on server
 ```bash
 sh scripts/multi-round/five_round_fgl_sever_finetune.sh $net $dataset $exp_name $data_path_train  $data_path_test $net_path $partition $beta $data_path_server $gpu_id
@@ -69,7 +69,7 @@ sh scripts/multi-round/five_round_fgl.sh $net $dataset $exp_name $data_path_trai
 # beta:choices [0.5, 1]
 ```
 
-### For Baseline
+## For Baseline
 - FedAvg. Please run the following command:
 
 ```bash

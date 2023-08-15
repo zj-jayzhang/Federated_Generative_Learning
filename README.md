@@ -1,6 +1,6 @@
 # Abstract 
 Existing federated learning solutions focus on transmitting training data or model weights/gradients between clients and server, which suffers from serious low-efficiency and privacy-leakage problems.Thanks to the emerging language/vision foundation models, we propose a novel federated learning framework that transmits prompts associated with distributed knowledge based on shared foundation models. The informative training data can be synthesized remotely based on received prompts and shared foundation models containing little privacy. The new framework offers numerous advantages, including improved communication efficiency, robustness to distribution shift, significant performance improvement and better privacy protection. Extensive experiments on ImageNet and DomainNet datasets demonstrates remarkable capabilities of the new framework over previous solutions.
-![img](imgs/pipeline.png)
+![img](imgs/pipeline.pdf)
 
 # Datasets
 
